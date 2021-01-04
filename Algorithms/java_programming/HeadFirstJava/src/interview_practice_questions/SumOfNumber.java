@@ -1,7 +1,9 @@
 package interview_practice_questions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SumOfNumber {
 	
@@ -39,6 +41,40 @@ public class SumOfNumber {
 		
 	}
 	
+	public List<Integer> findTwoNums(List<Integer> list){
+		ArrayList<Integer> numbers = new ArrayList<Integer>(); 
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		int targetSum = 5;
+		
+		for(int index = 0 ; index < list.size(); index++) {
+			map.put(index, list.get(index));
+		}
+		
+		for(int i = 0; i < map.size();i++) {
+			if(map.get(i)>targetSum) {
+				//System.out.println(map.get(i) + "not found");
+			}else {
+				int firstNumber = map.get(i);
+				int result = firstNumber - targetSum;
+				int searchTarget = Math.abs(result);
+				if(map.containsValue(searchTarget)) {
+					numbers.add(firstNumber);
+					numbers.add(searchTarget);
+					break;
+				}
+			}
+		}	
+		return numbers;	
+	}
+	
+	public static void printMap(HashMap<Integer,Integer> map) {
+		for(int i = 0; i < map.size(); i++) {
+			System.out.print(map.get(i) + " ");
+		}
+	}
+	
+	
+	
 	public static void printList(List<Integer> list) {
 		for(int i = 0; i < list.size(); i++) {
 			System.out.print(list.get(i) + " ");
@@ -57,8 +93,8 @@ public class SumOfNumber {
 	//	printList(list);
 		SumOfNumber summer = new SumOfNumber();
 		
-		printList(summer.findTwoNumbers(list));
-		
+		//printList(summer.findTwoNumbers(list));
+		printList(summer.findTwoNums(list));
 		
 	}
 
